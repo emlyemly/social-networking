@@ -62,7 +62,6 @@ router.get('/user/:user_id', async (req, res) => {
  */
 router.get('/me', auth, async (req, res) => {
     try {
-        console.log('hello');
         Profile.countDocuments({ user: req.user.id }, async (err, count) => {
             if (count > 0) {
                 const profile = await Profile.findOne({

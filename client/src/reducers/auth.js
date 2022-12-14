@@ -4,8 +4,6 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGOUT,
-    CLEAR_PROFILE,
-    PROFILE_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -39,20 +37,6 @@ export const authReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 isLoading: false,
                 user: action.payload,
-            };
-        case PROFILE_ERROR:
-            return {
-                ...state,
-                isLoading: false,
-                error: action.payload,
-                profile: null,
-            };
-        case CLEAR_PROFILE:
-            return {
-                ...state,
-                profile: null,
-                repos: [],
-                isLoading: false,
             };
         default:
             return state;
