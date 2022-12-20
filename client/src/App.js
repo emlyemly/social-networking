@@ -10,10 +10,12 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 import ProfileForm from './components/profile-forms/ProfileForm';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
-import PrivateRoute from './components/routing/PrivateRoute';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
@@ -43,6 +45,16 @@ const App = () => {
                                 element={<Register />}
                             />
                             <Route exact path='/login' element={<Login />} />
+                            <Route
+                                exact
+                                path='/profiles'
+                                element={<Profiles />}
+                            />
+                            <Route
+                                exact
+                                path='/profile/:id'
+                                element={<Profile />}
+                            />
                             <Route
                                 path='dashboard'
                                 element={<PrivateRoute component={Dashboard} />}

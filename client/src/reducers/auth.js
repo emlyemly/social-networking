@@ -4,6 +4,7 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGOUT,
+    ACCOUNT_DELETED,
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,7 @@ export const authReducer = (state = initialState, action) => {
             };
         case AUTH_ERROR:
         case LOGOUT:
+        case ACCOUNT_DELETED:
             return {
                 ...state,
                 token: null,

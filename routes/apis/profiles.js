@@ -7,6 +7,7 @@ const config = require('config');
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 
 /* @route  GET api/profiles
  * @desc   get all profiles
@@ -68,7 +69,7 @@ router.get('/me', auth, async (req, res) => {
                     user: req.user.id,
                 }).populate('user', ['name', 'avatar']);
 
-                return res.json({ profile });
+                return res.json(profile);
             } else {
                 return res
                     .status(400)
@@ -172,6 +173,7 @@ router.post(
  */
 router.delete('/', auth, async (req, res) => {
     try {
+        await Post.deleteMany({ user: req.user.id });
         await Profile.findOneAndRemove({ user: req.user.id });
         await User.findOneAndRemove({ _id: req.user.id });
 
